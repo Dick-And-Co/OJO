@@ -1,4 +1,4 @@
-// I understand how this works
+/* I understand how this works
 
 var http = require('http');
 
@@ -55,11 +55,8 @@ fs.readFile('input.txt', function (err, data) {
 	console.log(data.toString());
 });
 console.log('Program ended');
+*/
 
-
-/*
-'use strict';
-const nodemailer = require('nodemailer');
 
 // Generate test SMTP service account from ethereal.email
 // Only needed if you don't have a real mail account for testing
@@ -77,8 +74,8 @@ nodemailer.createTestAccount((err, account) => {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"Suzie Rhodes" <magicqwertyuiop@gmail.com>', // sender address
-        to: 'magicqwertyuiop@gmail.com', // list of receivers
+        from: '"Fred Foo 👻" <foo@example.com>', // sender address
+        to: 'bar@example.com, baz@example.com', // list of receivers
         subject: 'Hello ✔', // Subject line
         text: 'Hello world?', // plain text body
         html: '<b>Hello world?</b>' // html body
@@ -97,4 +94,3 @@ nodemailer.createTestAccount((err, account) => {
         // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     });
 });
-*/
