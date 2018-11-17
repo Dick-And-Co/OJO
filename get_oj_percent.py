@@ -32,5 +32,10 @@ full = count_pixels("full.jpg")
 current = count_pixels(sys.argv[1])
 base = full - empty
 current = current - empty
-print("Percent of OJ:" + str(current/base))
+percent = current/base;
+print("Percent of OJ:" + str(percent))
+f = open("percent.txt", "w")
+f.write(str(percent))
+f.close()
+
 #cv2.waitKey(0)
