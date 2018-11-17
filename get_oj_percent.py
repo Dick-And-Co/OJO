@@ -3,23 +3,29 @@ import cv2
 import numpy as np
 import sys
 
+def fix_img(img):
+	
+	return 
+
 def count_pixels(path):
-	img = cv2.imread(path, cv2.IMREAD_COLOR)
+	img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
 	count = 0
 	red = 0
 	green = 0
 	blue = 0
 	for x in img:
 		for y in x:
-			red += y[0]
-			green += y[1]
-			blue += y[2]
-			if y[0] > 100 and  y[0] > y[1] and y[1] > y[2]:
-				count += 1
+			count += y
+			#red += y[0]
+			#green += y[1]
+			#blue += y[2]
+			#if y[0] > 100 and  y[0] > y[1] and y[1] > y[2]:
+			#	count += 1
 	print(path)
 	print(red)
 	print(green)
 	print(blue)
+	print(count)
 	return count
 
 empty = count_pixels("empty.jpg")
