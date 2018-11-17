@@ -1,4 +1,4 @@
-/* I understand how this works
+// I understand how this works
 
 var http = require('http');
 
@@ -14,14 +14,22 @@ http.createServer(function(request, response) {
 	
 	// send the response body 
 	response.end(data.toString());
+	
 }).listen(3000);
 
 // Print a console message that the website is running
 console.log('Server running at http://127.0.0.1:3000/');
+/*
+// calls function every minute
+	function myFunction()
+	{
+		console.log("did it")
+	}
 
+	setTimeout(myFunction,1000);
+*/
 
 // An example of event handling in node
-
 var events = require('events');
 
 var eventEmitter = new events.EventEmitter();
@@ -41,7 +49,25 @@ eventEmitter.on('data_recieved', function() {
 eventEmitter.emit('connection');
 
 console.log('Program ended.');
+/*
+//Event handler to manage sending emails
+const EventEmitter = require('events').EventEmitter;
+const UpdateEvents = new EventEmitter
 
+function UpdateUser(percent)
+{
+
+SendMessage(percent)
+}
+
+UpdateEvents.on('SendMessage', SendMessage)
+
+function UpdatefromCamera (percent)
+{
+UpdateEvents.emit('UpdateUser', percent)
+
+}
+*/
 
 // This is some error handling in node
 
@@ -55,9 +81,9 @@ fs.readFile('input.txt', function (err, data) {
 	console.log(data.toString());
 });
 console.log('Program ended');
-*/
 
-
+/*
+function SendMessage (percent){
 const nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
@@ -72,7 +98,7 @@ const mailOptions = {
 	from: 'ojotester@gmail.com', // sender address
 	to: '7029172268@messaging.sprintpcs.com', // list of receivers
 	subject: 'Testing', // Subject line
-	text: 'success?'// text body
+	text: percent + 'left'// text body
 };
 
 transporter.sendMail(mailOptions, function (err, info) {
@@ -81,4 +107,6 @@ transporter.sendMail(mailOptions, function (err, info) {
    else
      console.log(info);
 });
+}
+*/
 
