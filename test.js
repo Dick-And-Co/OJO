@@ -16,7 +16,7 @@ server.listen(port, hostname, () => {
 
 function SendEmail() {
 
-var percent = (fs.readFileSync("percentage.txt"))*100;
+var percent = (fs.readFileSync("percent.txt"))*100;
 
 console.log(percent)
 
@@ -46,7 +46,11 @@ const mailOptions = {
 	from: 'ojoserver2@gmail.com', // sender address
 	to: 'ojotester@gmail.com', // list of receivers
 	subject: 'OJO', // Subject line
-	text: 'Hey! You have ' + percent + '% left' //text body
+	text: 'Hey! You have ' + percent + '% left', //text body
+	// attach image
+	attachments: [
+	{filename: 'fridge.jpg',
+	content: fs.createReadStream('C:/Users/magic/Desktop/Tech/OJO/fridge.jpg')}]
 }
 
 transporter.sendMail(mailOptions, function (err, info) {
@@ -79,8 +83,8 @@ var imap = new Imap({
 });
 
 // Step 3: Program to receive emails. 
-/* This pretty much contains receiving emails, deciding which parts of email to receive,
-and what do display on console after execution of program */
+// This pretty much contains receiving emails, deciding which parts of email to receive,
+// and what do display on console after execution of program 
 function openInbox(cb) {
   imap.openBox('INBOX', true, cb);
 }
