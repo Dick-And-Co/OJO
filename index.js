@@ -70,9 +70,9 @@ var transporter = nodemailer.createTransport({
 
 const mailOptions = {
 	from: 'ojotester@gmail.com', // sender address
-	to: 'ojotester@gmail.com', // list of receivers
+	to: '7029172268@messaging.sprintpcs.com', // list of receivers
 	subject: 'Testing', // Subject line
-	html: '<p>success?</p>'// html text body
+	text: 'success?'// text body
 };
 
 transporter.sendMail(mailOptions, function (err, info) {
