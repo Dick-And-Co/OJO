@@ -14,10 +14,13 @@ server.listen(port, hostname, () => {
 
 function SendEmail() {
 
-percent = 50
+var fs = require("fs");
+
+var percent = (fs.readFileSync("percentage.txt"))*100;
+
 console.log(percent)
 //maybe send email 
-if(percent == 50) {
+if(percent < 35) {
 console.log('sent Email')
 const nodemailer = require('nodemailer');
 
