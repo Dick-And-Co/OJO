@@ -65,7 +65,8 @@ transporter.sendMail(mailOptions, function (err, info) {
 
 setInterval(SendEmail,5000);
 
-});
+
+function checkEmail() {
 
 // recieve emails?
 // Step 1: Include required modules
@@ -100,7 +101,10 @@ openInbox(function(err, box) {
   imap.search([ 'UNSEEN', ['SINCE', 'June 15, 2018'] ], function(err, results) { 
     if (err) throw err;
 	
-	if(results === undefined || results.length == 0) return;
+	if(results === undefined || results.length == 0) {
+		console.log('empty inbox');
+		return;
+	}
     var f = imap.fetch(results, { bodies: '' });
 	
     f.on('message', function(msg, seqno) {
@@ -154,3 +158,9 @@ imap.once('end', function() {
 });
 
 imap.connect(); 
+
+}
+
+setInterval(checkEmail, 5000);
+
+});
