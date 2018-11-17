@@ -50,7 +50,7 @@ const mailOptions = {
 	// attach image
 	attachments: [
 	{filename: 'fridge.jpg',
-	content: fs.createReadStream('C:/Users/magic/Desktop/Tech/OJO/fridge.jpg')}]
+	content: fs.createReadStream('fridge.jpg')}]
 }
 
 transporter.sendMail(mailOptions, function (err, info) {
