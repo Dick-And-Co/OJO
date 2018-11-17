@@ -9,12 +9,12 @@ const server = http.createServer((req, res) => {
   res.end('Hello World\n');
 });
 
+var fs = require("fs");
+
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 
 function SendEmail() {
-
-var fs = require("fs");
 
 var percent = (fs.readFileSync("percentage.txt"))*100;
 
@@ -85,6 +85,9 @@ function openInbox(cb) {
   imap.openBox('INBOX', true, cb);
 }
 
+// variable to determine whether or not to buy orange juice
+var buyOJ = false;
+
 imap.once('ready', function() {
 
 openInbox(function(err, box) {
@@ -99,7 +102,20 @@ openInbox(function(err, box) {
       var prefix = '(#' + seqno + ') ';
       msg.on('body', function(stream, info) {
         console.log(prefix + 'Body');
-        stream.pipe(fs.createWriteStream('msg-' + seqno + '-body.txt'));
+        var email = stream.pipe(fs.createWriteStream('msg-' + seqno + '-body.txt'));
+		// hardcoding in to get just the body of the email
+		email.on('close', function(err) {
+			fs.readFile('msg-1-body.txt', function (err, data) {
+				if (err) throw err;
+	
+				// look for a confirmation to buy orange juice
+				if(data.indexOf('yes') >= 0) {
+					buyOJ = true;
+				}
+	
+				console.log("Am I going to order you some OJ? " + buyOJ + "!");
+			});
+		});
       });
       msg.once('attributes', function(attrs) {
         console.log(prefix + 'Attributes: %s', inspect(attrs, false, 8));
